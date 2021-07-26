@@ -1,0 +1,189 @@
+{
+  "version": "3.5.0",
+  "flags": {},
+  "shapes": [
+    {
+      "label": "转-录_嘱托：1.注意饮食、休息，忌辛辣等；",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          63,
+          510
+        ],
+        [
+          294,
+          531
+        ]
+      ]
+    },
+    {
+      "label": "转-录_建议行血常规及CRR检查;",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          109,
+          536
+        ],
+        [
+          291,
+          552
+        ]
+      ]
+    },
+    {
+      "label": "转-录_3.若有不适（体温超过38度或病情出现变化），门诊随诊",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          110,
+          558
+        ],
+        [
+          491,
+          580
+        ]
+      ]
+    },
+    {
+      "label": "转-录_4，注意观察患儿有无出现高热不退、抽搐、精神胃纳差、呼吸困难等情况，",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          113,
+          584
+        ],
+        [
+          600,
+          606
+        ]
+      ]
+    },
+    {
+      "label": "转-录_必要时到上级医院进一步完善诊查。",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          68,
+          615
+        ],
+        [
+          299,
+          632
+        ]
+      ]
+    },
+    {
+      "label": "转-录_3、复方鱼腥草颗粒（6g/15袋/盒）5袋/3gtid口服",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          64,
+          482
+        ],
+        [
+          396,
+          506
+        ]
+      ]
+    },
+    {
+      "label": "转-录_小儿肺咳颗粒(2g*9袋/盒)18袋/4g Tid 口服",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          64,
+          457
+        ],
+        [
+          378,
+          480
+        ]
+      ]
+    },
+    {
+      "label": "转-录_处理:【处方1】1.盐酸左西替利嗪颗粒(2.5mg*12袋/盒）3袋/2.5mgQd 口服",
+      "shape_type": "rectangle",
+      "line_color": [
+        5,
+        247,
+        17,
+        128
+      ],
+      "fill_color": null,
+      "points": [
+        [
+          57,
+          424
+        ],
+        [
+          590,
+          454
+        ]
+      ]
+    }
+  ],
+  "imgAttrLabel": null,
+  "lineColor": [
+    0,
+    255,
+    0,
+    128
+  ],
+  "fillColor": [
+    255,
+    0,
+    0,
+    128
+  ],
+  "imagePath": "微信截图_20210723113622.png",
+  "imageData": null
+}
