@@ -1,3 +1,4 @@
 {
-  "delName":["-","_"]
+  "delName":[],
+  "addXmlField":["clear","line"]
 }

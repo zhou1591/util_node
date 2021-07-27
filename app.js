@@ -12,7 +12,8 @@ let toJsonPath = path.join(__dirname, './toJson/')
 
 let config = require('./config.json')
 const {
-  delName
+  delName,
+  addXmlField
 } = config
 
 if (!fs.existsSync(toXmlPath)) {
@@ -63,9 +64,16 @@ function readXml(newPath = '', toXmlPath = '') {
       parseString(fs.readFileSync(newPath + el, 'utf8'), (err, result) => {
         result.annotation.object.forEach(el => {
           delName.forEach(item=>{
-            el.name = String(el.name[0]).replace(new RegExp(item, "g"), "")
+            el.name = [String(el.name[0]).replace(new RegExp(item, "g"), "")]
+          })
+          addXmlField.forEach(item=>{
+            if(el.name[0].includes(item)){
+              const valueArr = el.name[0].split(`${item}_`)
+              el[item]=valueArr.pop().split('-')[0]
+            }
           })
         });
+        // 
         whireXML(result, el, toXmlPath)
       })
     }
