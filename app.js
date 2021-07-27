@@ -80,7 +80,7 @@ function readXml(newPath = '', toXmlPath = '') {
     }
   }
 }
-readXml(xmlPath, toXmlPath)
+
 
 
 // 地柜文件夹
@@ -108,4 +108,11 @@ function readJson(jsonPath = '', toJsonPath = '') {
     }
   }
 }
-readJson(jsonPath, toJsonPath)
+
+try {
+  readXml(xmlPath, toXmlPath)
+  readJson(jsonPath, toJsonPath)
+} catch (error) {
+  console.log(JSON.stringify(error,'','\t'))
+  console.log('文件夹里边有不是xml或者json得文件')
+}
