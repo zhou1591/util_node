@@ -70,6 +70,7 @@ function readXml(newPath = '', toXmlPath = '') {
             if(el.name[0].includes(item)){
               const valueArr = el.name[0].split(`${item}_`)
               el[item]=valueArr.pop().split('-')[0]
+              el.name = [String(el.name[0]).replace(new RegExp(`-${item}_${el[item]}`, "g"), "")]
             }
           })
         });
