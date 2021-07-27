@@ -60,7 +60,7 @@ function readXml(newPath = '', toXmlPath = '') {
         fs.mkdirSync(toXmlPath)
       }
       readXml(newPath, toXmlPath)
-    } else {
+    } else if(path.extname(el)==='.xml'){
       parseString(fs.readFileSync(newPath + el, 'utf8'), (err, result) => {
         result.annotation.object.forEach(el => {
           delName.forEach(item=>{
@@ -96,7 +96,7 @@ function readJson(jsonPath = '', toJsonPath = '') {
         fs.mkdirSync(toJsonPath)
       }
       readJson(jsonPath, toJsonPath)
-    } else {
+    } else if(path.extname(el)==='.json'){
       const json = fs.readFileSync(jsonPath + el, 'utf8')
       const model = JSON.parse(json)
       model.shapes.forEach(el => {
