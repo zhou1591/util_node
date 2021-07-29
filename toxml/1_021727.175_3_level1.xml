@@ -37,6 +37,7 @@
       <xmax>2501</xmax>
       <ymax>1537</ymax>
     </bndbox>
+    <clear>0</clear>
     <line>0</line>
   </object>
 </annotation>

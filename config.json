@@ -1,4 +1,11 @@
 {
   "delName":[],
-  "addXmlField":["clear","line"]
+  "addXmlField":["clear","line"],
+  "addXmlDefaultField":[{
+    "key":"clear",
+    "value":"0"
+  },{
+    "key":"line",
+    "value":"10086"
+  }]
 }

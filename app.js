@@ -13,7 +13,8 @@ let toJsonPath = path.join(__dirname, './toJson/')
 let config = require('./config.json')
 const {
   delName,
-  addXmlField
+  addXmlField,
+  addXmlDefaultField
 } = config
 
 if (!fs.existsSync(toXmlPath)) {
@@ -60,16 +61,22 @@ function readXml(newPath = '', toXmlPath = '') {
         fs.mkdirSync(toXmlPath)
       }
       readXml(newPath, toXmlPath)
-    } else if(path.extname(el)==='.xml'){
+    } else if (path.extname(el) === '.xml') {
       parseString(fs.readFileSync(newPath + el, 'utf8'), (err, result) => {
         result.annotation.object.forEach(el => {
-          delName.forEach(item=>{
+          delName.forEach(item => {
             el.name = [String(el.name[0]).replace(new RegExp(item, "g"), "")]
           })
-          addXmlField.forEach(item=>{
-            if(el.name[0].includes(item)){
+          // 给xml 添加默认值
+          addXmlDefaultField.forEach(item=>{
+            if(el[item.key])return
+            el[item.key] = item.value
+          })
+          // 给xml  判断字符数组有没有 有的话删掉 并且添加到标签
+          addXmlField.forEach(item => {
+            if (el.name[0].includes(item)) {
               const valueArr = el.name[0].split(`${item}_`)
-              el[item]=valueArr.pop().split('-')[0]
+              el[item] = valueArr.pop().split('-')[0]
               el.name = [String(el.name[0]).replace(new RegExp(`-${item}_${el[item]}`, "g"), "")]
             }
           })
@@ -96,15 +103,15 @@ function readJson(jsonPath = '', toJsonPath = '') {
         fs.mkdirSync(toJsonPath)
       }
       readJson(jsonPath, toJsonPath)
-    } else if(path.extname(el)==='.json'){
+    } else if (path.extname(el) === '.json') {
       const json = fs.readFileSync(jsonPath + el, 'utf8')
       const model = JSON.parse(json)
       model.shapes.forEach(el => {
-        delName.forEach(item=>{
+        delName.forEach(item => {
           el.label = String(el.label).replace(new RegExp(item, "g"), "")
         })
       })
-      whireJson(JSON.stringify(model,'','\t'), el, toJsonPath)
+      whireJson(JSON.stringify(model, '', '\t'), el, toJsonPath)
     }
   }
 }
@@ -113,6 +120,6 @@ try {
   readXml(xmlPath, toXmlPath)
   readJson(jsonPath, toJsonPath)
 } catch (error) {
-  console.log(JSON.stringify(error,'','\t'))
+  console.log(JSON.stringify(error, '', '\t'))
   console.log('文件夹里边有不是xml或者json得文件')
 }
