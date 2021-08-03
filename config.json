@@ -1,11 +1,20 @@
 {
-  "delName":[],
-  "addXmlField":["clear","line"],
-  "addXmlDefaultField":[{
-    "key":"clear",
-    "value":"0"
-  },{
-    "key":"line",
-    "value":"10086"
-  }]
+  "app":{
+    "delName":[],
+    "addXmlField":["clear","line"],
+    "addXmlDefaultField":[{
+      "key":"clear",
+      "value":"0"
+    },{
+      "key":"line",
+      "value":"10086"
+    }]
+  },
+  "app2":{
+    "onceLabelFiledList":["车辆子类型","车辆用途"],
+    "resetFiled":[{
+      "key":"小型客车",
+      "value":"car"
+    }]
+  }
 }

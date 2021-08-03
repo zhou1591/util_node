@@ -15,7 +15,7 @@ const {
   delName,
   addXmlField,
   addXmlDefaultField
-} = config
+} = config.app
 
 if (!fs.existsSync(toXmlPath)) {
   fs.mkdirSync(toXmlPath)
