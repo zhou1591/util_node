@@ -90,7 +90,7 @@ function readJson(jsonPath = '', toJsonPath = '') {
             // x                  y
             return el[0]<=points[1][0]&&el[0]>=points[0][0]&&el[1]<=points[1][1]&&el[1]>=points[0][1]
           })
-          if(isIn){
+          if(isIn&&!model.shapes[lastBigIndex].sub_bboxes){
             model.shapes[lastBigIndex].sub_bboxes=sub_bboxes
           }else {
             const fartherList = bigIndexList.filter(findEl=>{
