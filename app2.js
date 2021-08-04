@@ -5,10 +5,11 @@ let jsonPath = path.join(__dirname, './json/')
 let toJsonPath = path.join(__dirname, './toJson2/')
 
 let config = require('./config.json')
-const {
+let {
   onceLabelFiledList,
   resetFiled
 } = config.app2
+resetFiled = resetFiled.sort((a,b)=>b.key.length-a.key.length)
 let errName = ''
 
 if (!fs.existsSync(toJsonPath)) {
