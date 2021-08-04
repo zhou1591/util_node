@@ -11,7 +11,7 @@
     }]
   },
   "app2":{
-    "onceLabelFiledList":["车辆子类型","车辆用途"],
+    "onceLabelFiledList":["车辆用途"],
     "resetFiled":[{
       "key":"小型客车",
       "value":"car"

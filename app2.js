@@ -9,7 +9,7 @@ const {
   onceLabelFiledList,
   resetFiled
 } = config.app2
-
+let errName = ''
 
 if (!fs.existsSync(toJsonPath)) {
   fs.mkdirSync(toJsonPath)
@@ -45,6 +45,9 @@ function readJson(jsonPath = '', toJsonPath = '') {
       const bigIndexList=[]
       let lastBigIndex = null
       model.shapes.forEach((item,index)=>{
+        delete item.fill_color
+        delete item.line_color
+        errName=`${toJsonPath}${el}---${index}--${item.label}`
         // 替换
         resetFiled.forEach(forItem => {
           item.label = String(item.label).replace(new RegExp(forItem.key, "g"), forItem.value)
@@ -94,10 +97,10 @@ function readJson(jsonPath = '', toJsonPath = '') {
             model.shapes[lastBigIndex].sub_bboxes=sub_bboxes
           }else {
             const fartherList = bigIndexList.filter(findEl=>{
-              return findEl.points.every(el=>{
+              return  model.shapes[findEl].points.every(el=>{
                 // x                  y
                 return el[0]<=points[1][0]&&el[0]>=points[0][0]&&el[1]<=points[1][1]&&el[1]>=points[0][1]
-              })&&!findEl.sub_bboxes
+              })&&! model.shapes[findEl].sub_bboxes
             })
             model.shapes[fartherList.pop()].sub_bboxes=sub_bboxes
           }
@@ -112,6 +115,6 @@ function readJson(jsonPath = '', toJsonPath = '') {
 try {
   readJson(jsonPath, toJsonPath)
 } catch (error) {
-  console.log(JSON.stringify(error, '', '\t'))
-  console.log('文件夹里边有不是xml或者json得文件')
+  console.log(error)
+  console.log(`${errName}有问题`)
 }
