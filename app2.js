@@ -77,11 +77,22 @@ function readJson(jsonPath = '', toJsonPath = '') {
           const resetCar = `${activeCar?activeCar.value:'车牌内容'}_`
           const activeOcc = resetFiled.find(el=>el.key==='遮挡')
           const resetOcc = `${activeOcc?activeOcc.value:'遮挡'}_`
+          let text = 'none'
+          let license_plate_color = ''
           // 小框
+          if(item.label.includes(resetCar)){
+            text=item.label.split(resetCar).pop()
+            if(text.includes('-颜色属性_')){
+              const valueList = text.split('-颜色属性_')
+              text = valueList[0]
+              license_plate_color = valueList[1]
+            }
+          }
           const sub_bboxes ={
             ...item,
             sub_type:'License',
-            text:item.label.includes(resetCar)?item.label.split(resetCar).pop():'none',
+            text,
+            license_plate_color,
             occlude:item.label.includes(resetOcc)?`yes,${item.label.split(resetOcc).pop().split('-')[0]}`:'not'
           }
           item.needDel =true
