@@ -83,8 +83,8 @@ function readJson(jsonPath = '', toJsonPath = '') {
           // 小框
           if(item.label.includes(resetCar)){
             text=item.label.split(resetCar).pop()
-            if(text.includes('-颜色属性_')){
-              const valueList = text.split('-颜色属性_')
+            if(text.includes('-车牌颜色_')){
+              const valueList = text.split('-车牌颜色_')
               text = valueList[0]
               license_plate_color = valueList[1]
             }
@@ -109,7 +109,8 @@ function readJson(jsonPath = '', toJsonPath = '') {
             model.shapes[lastBigIndex].sub_bboxes=sub_bboxes
           }else {
             const fartherList = bigIndexList.filter(findEl=>{
-              return  model.shapes[findEl].points.every(el=>{
+              const { points} = model.shapes[findEl]
+              return  item.points.every(el=>{
                 // x                  y
                 return el[0]<=points[1][0]&&el[0]>=points[0][0]&&el[1]<=points[1][1]&&el[1]>=points[0][1]
               })&&! model.shapes[findEl].sub_bboxes
