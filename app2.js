@@ -80,13 +80,19 @@ function readJson(jsonPath = '', toJsonPath = '') {
           const resetOcc = `${activeOcc?activeOcc.value:'遮挡'}_`
           let text = 'none'
           let license_plate_color = ''
+          // 车牌
+          let repiceFeild = null
+          if(item.label.includes('-车牌颜色_'))repiceFeild='-车牌颜色_'
+          if(item.label.includes('-颜色属性_'))repiceFeild='-颜色属性_'
+          if(repiceFeild){
+            const valueList = item.label.split(repiceFeild)
+            license_plate_color = valueList[1]
+          }
           // 小框
           if(item.label.includes(resetCar)){
             text=item.label.split(resetCar).pop()
-            if(text.includes('-车牌颜色_')){
-              const valueList = text.split('-车牌颜色_')
-              text = valueList[0]
-              license_plate_color = valueList[1]
+            if(repiceFeild){
+              text = text.split(repiceFeild)[0]
             }
           }
           const sub_bboxes ={
