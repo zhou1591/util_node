@@ -11,13 +11,136 @@
     }]
   },
   "app2":{
-    "onceLabelFiledList":["车辆用途"],
+    "onceLabelFiledList":["车辆用途","车辆颜色","拍摄视角","遮挡程度"],
     "resetFiled":[{
       "key":"小型客车",
       "value":"car"
     },{
+      "key":"大型客车",
+      "value":"large-bus"
+    },{
+      "key":"中型客车",
+      "value":"bus"
+    },{
+      "key":"货车",
+      "value":"truck"
+    },{
+      "key":"三轮汽车",
+      "value":"tricycle"
+    },{
+      "key":"摩托车",
+      "value":"motorcycle"
+    },{
+      "key":"其他车辆",
+      "value":"other"
+    },{
+      "key":"普通小轿车",
+      "value":"ordinary-car"
+    },{
+      "key":"MPV",
+      "value":"mpv"
+    },{
+      "key":"SUV",
+      "value":"suv"
+    },{
+      "key":"面包车",
+      "value":"van"
+    },{
+      "key":"平板货车",
+      "value":"flatbed-truck"
+    },{
+      "key":"罐式货车",
+      "value":"tank-truck"
+    },{
+      "key":"板栏货车",
+      "value":"plate-truck"
+    },{
+      "key":"厢式货车",
+      "value":"cargo"
+    },{
+      "key":"仓栅式货车",
+      "value":"warehouse-truck"
+    },{
+      "key":"自卸式货车",
+      "value":"dump-truck"
+    },{
+      "key":"普通车辆",
+      "value":"normal"
+    },{
+      "key":"警车",
+      "value":"police"
+    },{
+      "key":"救护车",
+      "value":"ambulance"
+    },{
+      "key":"危险品运输车",
+      "value":"dangerous"
+    },{
+      "key":"渣土车",
+      "value":"muck"
+    },{
+      "key":"消防车",
+      "value":"fire"
+    },{
+      "key":"道路作业车",
+      "value":"roadwork"
+    },{
+      "key":"白色",
+      "value":"white"
+    },{
+      "key":"红色",
+      "value":"red"
+    },{
       "key":"黑色",
       "value":"black"
+    },{
+      "key":"银色",
+      "value":"silver"
+    },{
+      "key":"蓝色",
+      "value":"blue"
+    },{
+      "key":"灰色",
+      "value":"gray"
+    },{
+      "key":"绿色",
+      "value":"green"
+    },{
+      "key":"粉色",
+      "value":"pink"
+    },{
+      "key":"黄色",
+      "value":"yellow"
+    },{
+      "key":"紫色",
+      "value":"purple"
+    },{
+      "key":"棕色",
+      "value":"brown"
+    },{
+      "key":"正视",
+      "value":"front"
+    },{
+      "key":"侧视",
+      "value":"side"
+    },{
+      "key":"后视",
+      "value":"back"
+    },{
+      "key":"30-70",
+      "value":"50"
+    },{
+      "key":"人为遮挡",
+      "value":"manipute"
+    },{
+      "key":"其他遮挡",
+      "value":"other"
+    },{
+      "key":"新能源绿色",
+      "value":"green"
+    },{
+      "key":"新能源黄绿色",
+      "value":"ygreen"
     }]
   }
 }

@@ -51,7 +51,7 @@ function readJson(jsonPath = '', toJsonPath = '') {
         errName=`${toJsonPath}${el}---${index}--${item.label}`
         // 替换
         resetFiled.forEach(forItem => {
-          item.label = String(item.label).replace(new RegExp(forItem.key, "g"), forItem.value)
+          item.label = String(item.label).replace(new RegExp(forItem.key, "g"), forItem.value.replace(new RegExp('-', "g"),'&^&'))
         })
         // blank不动
         if(item.label.startsWith('blank')){
@@ -77,7 +77,11 @@ function readJson(jsonPath = '', toJsonPath = '') {
           if(result[6]){
             result[5] = [result[5],result[6]].join('-')
           }
-          console.log(result)
+          ;[result[0],result[1]].forEach((el,index)=>{
+            if(el){
+              result[index] = el.replace('&^&','-')
+            }
+          })
           item.vehicle_type=[result[0],result[1]].filter(el=>el).join(',')
           item.vehicle_attribute=[result[2],result[3]].join(',')
           item.other_fact=[result[4],result[5]].join(',')
