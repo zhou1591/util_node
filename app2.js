@@ -66,12 +66,21 @@ function readJson(jsonPath = '', toJsonPath = '') {
           item.type='vehicle'
           lastBigIndex = index
           bigIndexList.push(index)
-          const valueList = item.label.split('-').map(el=>{
-            return el.split('_').pop()
+          let valueList = item.label.split('-').map(el=>{
+            return el.split('_')
           })
-          item.vehicle_type=[valueList[0],valueList[1]].join(',')
-          item.vehicle_attribute=[valueList[2],valueList[3]].join(',')
-          item.other_fact=[valueList[4],valueList[5]].join(',')
+          const hasChrend= valueList.find(el=>el[0]==='车辆子类型')
+          valueList = valueList.map(el=>el.pop())
+          const result = valueList.slice(0,1)
+          if(!hasChrend)result.push(undefined)
+          result.push(...valueList.slice(1))
+          if(result[6]){
+            result[5] = [result[5],result[6]].join('-')
+          }
+          console.log(result)
+          item.vehicle_type=[result[0],result[1]].filter(el=>el).join(',')
+          item.vehicle_attribute=[result[2],result[3]].join(',')
+          item.other_fact=[result[4],result[5]].join(',')
           delete item.label
         }else{
           const activeCar = resetFiled.find(el=>el.key==='车牌内容')

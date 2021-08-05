@@ -32,9 +32,9 @@
 				]
 			],
 			"type": "vehicle",
-			"vehicle_type": "中型客车,普通车辆",
-			"vehicle_attribute": "绿色,侧视",
-			"other_fact": "30,"
+			"vehicle_type": "中型客车",
+			"vehicle_attribute": "普通车辆,绿色",
+			"other_fact": "侧视,30"
 		},
 		{
 			"shape_type": "rectangle",
@@ -49,9 +49,9 @@
 				]
 			],
 			"type": "vehicle",
-			"vehicle_type": "中型客车,普通车辆",
-			"vehicle_attribute": "白色,侧视",
-			"other_fact": "30,"
+			"vehicle_type": "中型客车",
+			"vehicle_attribute": "普通车辆,白色",
+			"other_fact": "侧视,30"
 		},
 		{
 			"shape_type": "rectangle",
@@ -300,7 +300,7 @@
 			"type": "vehicle",
 			"vehicle_type": "car,普通小轿车",
 			"vehicle_attribute": "普通车辆,白色",
-			"other_fact": "侧视,30"
+			"other_fact": "侧视,30-70"
 		}
 	],
 	"imgAttrLabel": null,
