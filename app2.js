@@ -1,6 +1,6 @@
 const fs = require('fs');
 var path = require('path');
-
+fs.writeFileSync(path.join(__dirname, './log.txt'),'')
 let jsonPath = path.join(__dirname, './json/')
 let toJsonPath = path.join(__dirname, './toJson2/')
 
@@ -149,4 +149,6 @@ try {
 } catch (error) {
   console.log(error)
   console.log(`${errName}有问题`)
+  fs.appendFileSync(path.join(__dirname, './log.txt'), `${errName}有问题\n`,'utf8')
 }
+console.log(`有问题的记录在${path.join(__dirname, './log.txt')}`)
