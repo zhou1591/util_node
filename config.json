@@ -1,10 +1,10 @@
 {
   "app":{
-    "delName":[],
-    "addXmlField":["clear","line"],
+    "delName":["转写_","车牌颜色_"],
+    "addXmlField":["",""],
     "addXmlDefaultField":[{
-      "key":"clear",
-      "value":"0"
+      "key":"",
+      "value":""
     },{
       "key":"line",
       "value":"10086"
@@ -20,7 +20,7 @@
       "value":"large-bus"
     },{
       "key":"中型客车",
-      "value":"bus"
+      "value":"medium-bus"
     },{
       "key":"货车",
       "value":"truck"
@@ -72,6 +72,15 @@
     },{
       "key":"救护车",
       "value":"ambulance"
+    },{
+      "key":"公交车",
+      "value":"bus"
+    },{
+      "key":"无遮挡",
+      "value":"0"
+    },{
+      "key":"其他",
+      "value":"other"
     },{
       "key":"危险品运输车",
       "value":"dangerous"
