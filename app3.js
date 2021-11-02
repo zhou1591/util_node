@@ -50,8 +50,17 @@ function readJson(jsonPath = '', toJsonPath = '', start) {
 readJson(jsonPath, toJsonPath, true)
 
 // SELECT
-//   *
-//   FROM `vegas_data_set_data`
+// 	file_name,
+// 	file_oss_url,
+// 	file_path,
+// 	oss_upload_state,
+// 	material_type_code,
+// 	data_set_id,
+// 	data_file_size,
+// 	creation_time,
+// 	isdelete 
+// FROM
+// 	`vegas_data_set_data` 
 // WHERE
-// data_set_id IN()
-// AND SUBSTRING_INDEX(file_name, '.', 1) IN()
+// 	data_set_id IN ( ) 
+// 	AND SUBSTRING_INDEX( file_name, '.', 1 ) IN ()
