@@ -1,6 +1,7 @@
 const fs = require('fs');
 var path = require('path');
-
+var xml2js = require('xml2js');
+var parseString = require('xml2js').parseString;
 let jsonPath = path.join(__dirname, './json')
 let toJsonPath = path.join(__dirname, './tojson')
 if (!fs.existsSync(jsonPath)) {
@@ -42,18 +43,26 @@ function readJson(jsonPath = '', toJsonPath = '') {
           }
           const result = JSON.parse(data)
           delete result.fillColor
+          delete result.imageData
           delete result.lineColor
           delete result.imgAttrLabel
-          result.shapes.forEach(el => {
-            delete el.line_color
-            delete el.fill_color
-          });
-          fs.writeFile(path.join(toJsonPath,el),JSON.stringify(result,'', '\t'),'utf8',(err)=>{
-            if(err){
-              console.log(err)
-              return
-            }
-            console.log('转换完成'+el)
+          const xmlUrl = el.split('.')
+          xmlUrl.pop()
+          parseString(fs.readFileSync(path.join(jsonPath, xmlUrl.join('') + '.xml'), 'utf8'), (err, xml) => {
+            const {width,height } = xml.annotation.size[0]
+            result.imageWidth=width[0]
+            result.imageHeight=height[0]
+            result.shapes.forEach(el => {
+              delete el.line_color
+              delete el.fill_color
+            });
+            fs.writeFile(path.join(toJsonPath,el),JSON.stringify(result,'', '\t'),'utf8',(err)=>{
+              if(err){
+                console.log(err)
+                return
+              }
+              console.log('转换完成'+el)
+            })
           })
         })
       }
