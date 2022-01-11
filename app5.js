@@ -10,6 +10,7 @@ if (!fs.existsSync(jsonPath)) {
 if (!fs.existsSync(toJsonPath)) {
   fs.mkdirSync(toJsonPath)
 }
+const classConfig = ['','人','足球','篮球','排球']
 
 // 地柜文件夹
 function readJson(jsonPath = '', toJsonPath = '') {
@@ -47,16 +48,49 @@ function readJson(jsonPath = '', toJsonPath = '') {
           delete result.flags
           delete result.lineColor
           delete result.imgAttrLabel
+          delete result.version
           const xmlUrl = el.split('.')
           xmlUrl.pop()
           parseString(fs.readFileSync(path.join(jsonPath, xmlUrl.join('') + '.xml'), 'utf8'), (err, xml) => {
             const {width,height } = xml.annotation.size[0]
-            result.imageWidth=width[0]
-            result.imageHeight=height[0]
-            result.shapes.forEach(el => {
-              delete el.line_color
-              delete el.fill_color
+            result.imageWidth=Number(width[0])
+            result.imageHeight=Number(height[0])
+            let groupsId = 0
+            const rectResult = result.shapes.filter(el=>el.shape_type==='rectangle').map(el=>{
+              groupsId++
+              const classIndex  = classConfig.findIndex(item=>item===el.label)
+              if(classIndex===-1) throw new Error(path.join(jsonPath, xmlUrl.join('')+el.label+'矩形 label 不正确'))
+              const  points = el.points
+              return {
+                group_id:groupsId,
+                class:Number(classIndex),
+                bbox:[points[0][0],points[0][1],points[1][0]-points[0][0],points[1][1]-points[0][1]],
+                keypoints:[],
+                segments:[],
+                needKeypoints:classIndex===1
+              }
+            })
+            const peoplePoint = result.shapes.filter(el=>el.shape_type!=='rectangle').map(el=>{
+              let label=null
+              const hasPoint = el.label.includes('点序号_')
+              if(hasPoint){
+                label = Number(el.label.split('点序号_')[1].split('-')[0])
+                if(!Number.isInteger(label))throw new Error(path.join(jsonPath, xmlUrl.join('')+el.label+'点label 不正确'))
+              }
+              return {
+                label,
+                visibility:el.label.includes('不可见')?0:1,
+                points:el.points[0]
+              }
+            })
+            const peopleIndex = rectResult.findIndex(el=>el.needKeypoints)
+            rectResult[peopleIndex].keypoints = peoplePoint
+            rectResult.forEach(el => {
+              delete el.needKeypoints 
             });
+            result.groups = rectResult
+            delete result.shapes
+
             fs.writeFile(path.join(toJsonPath,el),JSON.stringify(result,'', '\t'),'utf8',(err)=>{
               if(err){
                 console.log(err)
