@@ -58,16 +58,18 @@ function readJson(jsonPath = '', toJsonPath = '') {
             let groupsId = 0
             const rectResult = result.shapes.filter(el=>el.shape_type==='rectangle').map(el=>{
               groupsId++
-              const classIndex  = classConfig.findIndex(item=>item===el.label)
-              if(classIndex===-1) throw new Error(path.join(jsonPath, xmlUrl.join('')+el.label+'矩形 label 不正确'))
+              // const classIndex  = classConfig.findIndex(item=>item===el.label)
+              // if(classIndex===-1) {
+              //   throw new Error(path.join(jsonPath, xmlUrl.join('')+"---"+el.label+'矩形 label 不正确'))
+              // }
               const  points = el.points
               return {
                 group_id:groupsId,
-                class:Number(classIndex),
+                class:Number(el.label),
                 bbox:[points[0][0],points[0][1],points[1][0]-points[0][0],points[1][1]-points[0][1]],
                 keypoints:[],
                 segments:[],
-                needKeypoints:classIndex===1
+                needKeypoints:Number(el.label)===1
               }
             })
             const peoplePoint = result.shapes.filter(el=>el.shape_type!=='rectangle').map(el=>{
@@ -88,7 +90,9 @@ function readJson(jsonPath = '', toJsonPath = '') {
               delete el.needDel
             })
             const peopleIndex = rectResult.findIndex(el=>el.needKeypoints)
-            rectResult[peopleIndex].keypoints = peoplePoint
+            if(peopleIndex>-1){
+              rectResult[peopleIndex].keypoints = peoplePoint
+            }
             rectResult.forEach(el => {
               delete el.needKeypoints 
             });
