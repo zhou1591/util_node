@@ -78,10 +78,14 @@ function readJson(jsonPath = '', toJsonPath = '') {
                 if(!Number.isInteger(label))throw new Error(path.join(jsonPath, xmlUrl.join('')+el.label+'点label 不正确'))
               }
               return {
+                needDel:el.label.includes('完全不可见点'),
                 label,
-                visibility:el.label.includes('不可见')?0:1,
+                visibility:el.label.includes('不可见点')?0:1,
                 points:el.points[0]
               }
+            }).filter(el=>!el.needDel)
+            peoplePoint.forEach(el=>{
+              delete el.needDel
             })
             const peopleIndex = rectResult.findIndex(el=>el.needKeypoints)
             rectResult[peopleIndex].keypoints = peoplePoint
